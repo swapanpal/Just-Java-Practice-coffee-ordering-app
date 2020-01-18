@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view){
         quantity = quantity + 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
     /*
     This method is called when minus button is clicked
      */
     public void decrement(View view){
         quantity = quantity - 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
     /*
     This method is called when order button is clicked
@@ -41,15 +41,25 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage = "Total: $" + price;
         priceMessage = priceMessage + "\n Thank you!";
         displayMessage(priceMessage);
-        // displayPrice(quantity * 5);
+        calculatePrice(quantity, 10);
 
     }
+    /**
+     * Calculates the price of the order.
+     *
+     * @param quantity is the number of cups of coffee ordered
+     * @param pricePerCup is the price of one cup of coffee.
+     */
+    private void calculatePrice(int quantity, int pricePerCup) {
+        int price = quantity * pricePerCup;
+    }
+
     /*
     This method displays the given quantity value on the screen
      */
-    private void display(int number){
+    private void displayQuantity(int numberOfCoffee){
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + numberOfCoffee);
     }
     /*
     This method displays the given quantity value on the screen
