@@ -37,21 +37,32 @@ public class MainActivity extends AppCompatActivity {
     This method is called when order button is clicked
      */
     public void submitOrder(View view){
-        int price = quantity * 5;
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\n Thank you!";
-        displayMessage(priceMessage);
-        calculatePrice(quantity, 10);
-
+        int price = calculatePrice();
+        // String priceMessage = createOrderSummary(price);
+        displayMessage(createOrderSummary(price));
     }
     /**
      * Calculates the price of the order.
      *
-     * @param quantity is the number of cups of coffee ordered
-     * @param pricePerCup is the price of one cup of coffee.
+     * @quantity is the number of cups of coffee ordered
+     * @return total price.
      */
-    private void calculatePrice(int quantity, int pricePerCup) {
-        int price = quantity * pricePerCup;
+    private int calculatePrice() {
+        return quantity * 5;
+
+    }
+
+    /**
+     * create summary of the order.
+     * @param price of the order
+     * @return text summary.
+     */
+    private String createOrderSummary(int price){
+        String priceMessage = "Name: Swapan Paul";
+        priceMessage += "\n Quantity: " + quantity;
+        priceMessage += "\n Total: $" + price;
+        priceMessage += "\n Thank you!";
+        return priceMessage;
     }
 
     /*
@@ -61,20 +72,14 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + numberOfCoffee);
     }
-    /*
-    This method displays the given quantity value on the screen
-     */
-    private void displayPrice(int number){
-        TextView priceTextView = findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
 
-    }
     /*
     This method displays the given text on the screen
      */
     private void displayMessage(String message){
-        TextView priceTextView = findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        TextView orderSummar = findViewById(R.id.order_summary_text_view);
+        orderSummar.setText(message);
 
     }
 }
