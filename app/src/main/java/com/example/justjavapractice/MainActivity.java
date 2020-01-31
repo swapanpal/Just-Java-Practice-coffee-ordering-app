@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 /*
@@ -15,7 +16,7 @@ This app displays an order form to order coffee
  */
 
 public class MainActivity extends AppCompatActivity {
-    int quantity = 0;
+    int quantity = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
     This method is called when plus button is clicked
      */
     public void increment(View view){
+        // To prevent too many cup of coffee order(more than 100)
+        if (quantity == 100){
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            // Exit this method early because there's nothing left to do
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
@@ -33,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
     This method is called when minus button is clicked
      */
     public void decrement(View view){
+        // To prevent negative number of coffee order
+        if(quantity == 1){
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            // Exit this method early because there's nothing left to do
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
@@ -54,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Calculate the price
         int price = calculatePrice(hasWhippedCheckBox, hasChocolateCheckBox);
-        // String priceMessage = createOrderSummary(price);
 
         // Display the order summary on the screen
         String message = createOrderSummary(name, price, hasWhippedCheckBox, hasChocolateCheckBox);
