@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-        displayMessage(priceMessage);
     }
     /**
      * Calculates the price of the order.
@@ -133,14 +132,5 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + numberOfCoffee);
     }
-
-    /*
-    This method displays the given text on the screen
-     */
-    private void displayMessage(String message){
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        TextView orderSummar = findViewById(R.id.order_summary_text_view);
-        orderSummar.setText(message);
-
-    }
+    
 }
