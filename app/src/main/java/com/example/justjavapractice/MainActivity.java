@@ -2,6 +2,8 @@ package com.example.justjavapractice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -71,8 +73,17 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(hasWhippedCheckBox, hasChocolateCheckBox);
 
         // Display the order summary on the screen
-        String message = createOrderSummary(name, price, hasWhippedCheckBox, hasChocolateCheckBox);
-        displayMessage(message);
+        String priceMessage = createOrderSummary(name, price, hasWhippedCheckBox, hasChocolateCheckBox);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        //intent.putExtra(Intent.EXTRA_EMAIL, addresses); // this code is used for fix email(To,)
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+        displayMessage(priceMessage);
     }
     /**
      * Calculates the price of the order.
