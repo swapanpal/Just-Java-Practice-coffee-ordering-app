@@ -22,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Toppinga"/>
+        style="@style/CustomHeader"
+        android:text="@string/toppings"/>
 
 
     <CheckBox
@@ -46,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        style="@style/CustomHeader"
         android:text="Quantity" />
 
     <LinearLayout

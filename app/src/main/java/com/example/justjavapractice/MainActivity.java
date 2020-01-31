@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\n Add Chocolate? " + addChocolate;
         priceMessage += "\n Quantity: " + quantity;
         priceMessage += "\n Total: $" + price;
-        priceMessage += "\n Thank you!";
+        priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
     }
 
@@ -132,5 +132,5 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + numberOfCoffee);
     }
-    
+
 }
